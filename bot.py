@@ -308,6 +308,7 @@ app = (
         webhook_url=f"{PUBLIC_URL}/{WEBHOOK_PATH}",
         allowed_updates=Update.ALL_TYPES,
         drop_pending_updates=False,
+        bootstrap_retries=5,
     )
 
 
