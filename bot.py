@@ -288,11 +288,7 @@ app = (
     .post_init(post_init)
     .post_shutdown(post_shutdown)
     .build()
-)
-        .post_init(post_init)
-        .post_shutdown(post_shutdown)
-        .build()
-    )
+
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("settime", settime))
