@@ -5,7 +5,7 @@ import os
 import time
 import urllib.request
 from pathlib import Path
-
+from telegram.request import HTTPXRequest
 from telegram import Update
 from telegram.error import BadRequest, Forbidden, TelegramError
 from telegram.ext import (
@@ -274,9 +274,21 @@ def main():
     if not PUBLIC_URL:
         raise RuntimeError("Render did not provide RENDER_EXTERNAL_URL.")
 
-    app = (
-        Application.builder()
-        .token(BOT_TOKEN)
+    request = HTTPXRequest(
+    connect_timeout=30,
+    read_timeout=30,
+    write_timeout=30,
+    pool_timeout=30,
+)
+
+app = (
+    Application.builder()
+    .token(BOT_TOKEN)
+    .request(request)
+    .post_init(post_init)
+    .post_shutdown(post_shutdown)
+    .build()
+)
         .post_init(post_init)
         .post_shutdown(post_shutdown)
         .build()
