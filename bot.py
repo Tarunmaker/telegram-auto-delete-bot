@@ -280,15 +280,15 @@ def main():
     write_timeout=30,
     pool_timeout=30,
 )
+    app = (
+        Application.builder()
+        .token(BOT_TOKEN)
+        .request(request)
+        .post_init(post_init)
+        .post_shutdown(post_shutdown)
+        .build()
+    )
 
-app = (
-    Application.builder()
-    .token(BOT_TOKEN)
-    .request(request)
-    .post_init(post_init)
-    .post_shutdown(post_shutdown)
-    .build()
-)
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("settime", settime))
