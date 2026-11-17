@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: xoxoz-autodelete
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      - key: DATABASE_PATH
+        value: /tmp/xoxoz.sqlite3
